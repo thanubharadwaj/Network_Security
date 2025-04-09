@@ -24,16 +24,23 @@ class NetworkDataExtract():
         except Exception as e:
             raise NetworkSecurityException(e, sys)
         
-def csv_to_json_convertor(self,file_path):
-    def __init__(self):
+    def csv_to_json_convertor(self,file_path): 
         try:
-            pass
+            data = pd.read_csv(file_path)
+            data.reset_index(drop=True, inplace=True)
+            records =  list(json.loads(data.T.to_json()).values())
+            return records
         except Exception as e:
             raise NetworkSecurityException(e, sys)
         
-def pushing_data_to_mongodb(self,records, database,collection):
-    def __init__(self):
+    def pushing_data_to_mongodb(self,records, database,collection):
         try:
             pass
         except Exception as e:
             raise NetworkSecurityException(e, sys)
+
+if __name__  =='__main__':
+    FILE_PATH = "./Network_Data/NetworkData.csv"
+    networkobj = NetworkDataExtract()
+    records = networkobj.csv_to_json_convertor(FILE_PATH)
+    print(records)
